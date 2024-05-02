@@ -47,6 +47,13 @@
   </screenshots>
 
   <releases>
+    <release version="1.10.2" date="2024-05-02">
+      <description>
+        <p>Update to upstreadm 1.10.2</p>
+        <p>Includes many fixes to Exchumed, especially font rendering, fixes for Blood and Linux QoL improvements and fix for launcher showing (fixed from dev builds)
+      </p>
+      </description>
+    </release>
     <release version="1.9.1" date="2024-02-27">
       <description>
         <p>First release of Raze on Flatpak.</p>
