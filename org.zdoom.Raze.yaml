@@ -41,8 +41,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ZDoom/Raze.git
-        tag: 1.10.2
-        commit: 7bbbe6ecdafd9c88d32f5dc10e3065635ee16891
+        tag: 1.11.0
+        commit: 19e5f308de065fb432beb9d11070ece12da3ea3c
       - type: script
         commands:
           - raze +fluid_patchset /app/share/games/raze/soundfonts/raze.sf2 "$@"
