@@ -1,14 +1,13 @@
 app-id: org.zdoom.Raze
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: '23.08'
+runtime-version: '24.08'
 command: raze.sh
 
 finish-args:
 # Controller support on SteamDeck and such (copied from GZDoom)
   - --device=all
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --share=ipc
   - --share=network
   - --socket=pulseaudio

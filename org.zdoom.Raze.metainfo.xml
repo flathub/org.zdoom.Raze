@@ -47,6 +47,12 @@
   </screenshots>
 
   <releases>
+         <release version="1.11.0-1" date="2025-02-27">
+      <description>
+        <p>Upstream 1.11.0 and add some flatpak workarounds</p>
+        <p>Updated platform, zmusic, fixed a bug with no game window displayed if game picker was displayed beforehand.</p>
+      </description>
+    </release>
      <release version="1.11.0" date="2025-02-22">
       <description>
         <p>Update to upstream 1.11.0</p>
