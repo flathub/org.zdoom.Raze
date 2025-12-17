@@ -7,7 +7,7 @@ command: raze.sh
 finish-args:
 # Controller support on SteamDeck and such (copied from GZDoom)
   - --device=all
-  - --socket=fallback-x11
+  - --socket=x11
   - --share=ipc
   - --share=network
   - --socket=pulseaudio
