@@ -47,9 +47,15 @@
   </screenshots>
 
   <releases>
+     <release version="1.11.0" date="2025-02-22">
+      <description>
+        <p>Update to upstream 1.11.0</p>
+        <p>Multiple minor fixes to Blood, Duke and Shadow Warrior, minor performance improvements  due to decreased stdout spam</p>
+      </description>
+    </release>
     <release version="1.10.2" date="2024-05-02">
       <description>
-        <p>Update to upstreadm 1.10.2</p>
+        <p>Update to upstream 1.10.2</p>
         <p>Includes many fixes to Exchumed, especially font rendering, fixes for Blood and Linux QoL improvements and fix for launcher showing (fixed from dev builds)
       </p>
       </description>
