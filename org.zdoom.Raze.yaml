@@ -1,7 +1,7 @@
 app-id: org.zdoom.Raze
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: '26.08'
 command: raze.sh
 
 finish-args:
@@ -21,22 +21,57 @@ finish-args:
 
 cleanup:
   - /include
-  - '*.a'
-  - '*.la'
+  - /lib/cmake
   - /lib/pkgconfig
+  - '*.a'
 
 modules:
 
   - shared-modules/linux-audio/libinstpatch.json
   - shared-modules/linux-audio/fluidsynth2.json
-  - shared-modules/gzdoom/game-music-emu.json
-  - shared-modules/gzdoom/zmusic.json
+
+  - name: game-music-emu
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.5.tar.gz
+        sha256: 8531678502451c2cf04248cda45c8b4645e19fcfb63e6a7ec2549641c47bb392
+        x-checker-data:
+          type: anitya
+          project-id: 866
+          stable-only: true
+          url-template: https://github.com/libgme/game-music-emu/archive/refs/tags/$version.tar.gz
+
+  - name: zmusic
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/UZDoom/ZMusic/archive/1.3.0.tar.gz
+        sha256: 2eccd41e1cc9b38b3729ab94d65635719b2adc916de4ca9f8399ebceaee89f7f
+        x-checker-data:
+          type: anitya
+          project-id: 153600
+          stable-only: true
+          url-template: https://github.com/UZDoom/ZMusic/archive/$version.tar.gz
 
   - name: raze
     buildsystem: cmake-ninja
+    build-options:
+      cflags: -std=gnu17 -Wno-error=old-style-definition
+      cxxflags: -include cstdint
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DSYSTEMINSTALL=1
+    post-install:
+      - install -Dm644 soundfont/raze.sf2 -t /app/share/games/raze/soundfonts/
+      - install -Dm755 raze.sh -t /app/bin/
+      - install -Dm644 ${FLATPAK_ID}.desktop -t /app/share/applications/
+      - install -Dm644 ${FLATPAK_ID}.png -t /app/share/icons/hicolor/256x256/apps/
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo/
     sources:
       - type: git
         url: https://github.com/ZDoom/Raze.git
@@ -51,10 +86,4 @@ modules:
       - type: file
         path: org.zdoom.Raze.metainfo.xml
       - type: file
-        path: org.zdoom.Raze.256.png
-    post-install:
-      - install -Dm 644 soundfont/raze.sf2 /app/share/games/raze/soundfonts/raze.sf2
-      - install -D raze.sh /app/bin/raze.sh
-      - install -Dm 644 org.zdoom.Raze.desktop -t /app/share/applications
-      - install -Dm 644 org.zdoom.Raze.256.png /app/share/icons/hicolor/256x256/apps/org.zdoom.Raze.png
-      - install -Dm 644 org.zdoom.Raze.metainfo.xml /app/share/metainfo/org.zdoom.Raze.metainfo.xml
+        path: org.zdoom.Raze.png
